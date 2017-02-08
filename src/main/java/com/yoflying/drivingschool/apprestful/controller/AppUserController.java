@@ -44,6 +44,7 @@ public class AppUserController {
         logger.info("coachstudent" + token.getUsername() + "---------" + token.getHost());
 
         if (StringUtils.isEmpty(token.getUsername()) || StringUtils.isEmpty(token.getUsername())) {
+            //测试上传ლ(°◕‵ƹ′◕ლ)
             return new JsonResult<Integer>("用户密码不能为空", ErrorDef.USER_PASS_ERROR);
         }
 
