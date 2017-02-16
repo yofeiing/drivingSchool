@@ -229,7 +229,7 @@ public class ManageUserController extends BaseManageControllet {
     @RequiresRoles(RoleSign.ADMIN)
     public JsonResult searchCoachStList(Integer discern, String name) {
 
-        if (!(discern <= 2) || !(discern > 0) || StringUtils.isEmpty(name)) {
+        if (StringUtils.isEmpty(name) || !(discern <= 2) || !(discern > 0)) {
             return new JsonResult("参数传递错误", ErrorDef.SUCCESS);
         }
 
