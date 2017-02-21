@@ -3,8 +3,10 @@ package com.yoflying.drivingschool.coachStudents.controller;
 import com.yoflying.drivingschool.coachStudents.BaseCsController;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
+import com.yoflying.drivingschool.entity.DSInfoEntity;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.infrastructure.token.ManageToken;
+import com.yoflying.drivingschool.management.facade.ManageServiceFacade;
 import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -13,6 +15,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -28,6 +31,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/coachstudent")
 public class CoachStudentUserController extends BaseCsController{
     private final Logger logger = LoggerFactory.getLogger(CoachStudentUserController.class);
+
+    @Autowired
+    ManageServiceFacade manageServiceFacade;
 
 
     @RequestMapping(value = "/login")
@@ -73,6 +79,21 @@ public class CoachStudentUserController extends BaseCsController{
             return new JsonResult<Integer>("用户密码错误", ErrorDef.USER_PASS_ERROR);
         }
         return new JsonResult<Integer>("非法用户", ErrorDef.USER_PASS_ERROR);
+    }
+
+    /**
+     * 学员教练获取驾校基础信息
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequiresRoles(value = {RoleSign.COACH, RoleSign.STUDENT},logical = Logical.OR)
+    @RequestMapping(value = "/getDSInfo")
+    public JsonResult getDSInfo() {
+
+        DSInfoEntity dsInfoEntity = manageServiceFacade.getDSInfo(getCoachStudentUser().getDsId());
+
+        return new JsonResult<DSInfoEntity>(ErrorDef.SUCCESS, "查询成功", dsInfoEntity);
     }
 
 }

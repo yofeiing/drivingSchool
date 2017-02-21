@@ -196,7 +196,7 @@ public class ManageUserController extends BaseManageControllet {
     }
 
     /**
-     * 根据驾校id 查找驾校所有学生
+     * 根据驾校查找驾校所有学生
      *
      * @param pageNum
      * @return
@@ -293,7 +293,7 @@ public class ManageUserController extends BaseManageControllet {
     }
 
     /**
-     * 管理员更改驾校配置设置
+     * 管理员手动提交预约信息
      *
      * @param entitys
      * @return
@@ -348,15 +348,15 @@ public class ManageUserController extends BaseManageControllet {
     }
 
     /**
-     * 获取驾校教练课程情况
+     * 获取驾校教练课程情况 传入时间 则显示传入的时间 否则显示当天时间
      * @return
      */
     @ResponseBody
     @RequiresRoles(RoleSign.ADMIN)
     @RequestMapping(value = "/dsAppointrentSt")
-    public JsonResult dsAppointrentSt() {
+    public JsonResult dsAppointrentSt(String date) {
 
-        List<AppointmentSt> appointmentStList = manageServiceFacade.dsAppointrentSt(getManageUser().getDsId());
+        List<AppointmentSt> appointmentStList = manageServiceFacade.dsAppointrentSt(getManageUser().getDsId(), date);
 
         return new JsonResult<List<AppointmentSt>> (ErrorDef.SUCCESS, "查询成功", appointmentStList);
     }

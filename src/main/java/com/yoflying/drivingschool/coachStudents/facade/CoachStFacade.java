@@ -28,6 +28,7 @@ public class CoachStFacade {
 
     @Autowired
     CoachStudentService coachStudentService;
+
     public List<AppointmentSt> getAppointmentInfo(long dsId, long coachId, int testCoures) {
         List<AppointmentSt>  appointmentSts = appointmentStService.findAppointmentStbyCoachIdandCoures(dsId, coachId, testCoures);
         return appointmentSts;

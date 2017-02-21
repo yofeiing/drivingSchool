@@ -44,6 +44,10 @@ public class StudentController extends BaseCsController {
         return "/coachSt/student.ftl";
     }
 
+    /**
+     * 学员获取当前约车信息
+     * @return
+     */
     @RequestMapping(value = "/getAppointment", method = RequestMethod.GET)
     @RequiresRoles(RoleSign.STUDENT)
     @ResponseBody

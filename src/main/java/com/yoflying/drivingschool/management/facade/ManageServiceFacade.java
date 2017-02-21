@@ -2,6 +2,7 @@ package com.yoflying.drivingschool.management.facade;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.StringUtil;
 import com.yoflying.drivingschool.constdef.Const;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.model.*;
@@ -142,10 +143,10 @@ public class ManageServiceFacade {
         return dsInfoEntity;
     }
 
-    public List<AppointmentSt> dsAppointrentSt(long dsId) {
+    public List<AppointmentSt> dsAppointrentSt(long dsId, String date) {
 
-        List<AppointmentSt> appointmentSts = appointmentStService.findAppointmentStbysDsIdToday(dsId, TimeUtils.DateToString(
-                new Date(), TimeUtils.YYYY_MM_DD));
+        List<AppointmentSt> appointmentSts = appointmentStService.findAppointmentStbysDsIdToday(dsId,
+                StringUtil.isEmpty(date) ? TimeUtils.DateToString(new Date(), TimeUtils.YYYY_MM_DD) : date);
 
         return appointmentSts;
     }
