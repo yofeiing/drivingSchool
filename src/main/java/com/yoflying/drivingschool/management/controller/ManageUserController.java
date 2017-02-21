@@ -1,23 +1,17 @@
 package com.yoflying.drivingschool.management.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.yoflying.drivingschool.domain.model.*;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
-import com.yoflying.drivingschool.infrastructure.realm.PermissionSign;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.management.BaseManageControllet;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.service.ManageUserService;
 import com.yoflying.drivingschool.management.facade.ManageServiceFacade;
 import com.yoflying.drivingschool.management.model.CoachStatusCouresModel;
-import com.yoflying.drivingschool.task.ApporintmentTask;
 import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
@@ -282,7 +276,11 @@ public class ManageUserController extends BaseManageControllet {
     @RequestMapping(value = "/settingDrivingConfig", method = RequestMethod.POST)
     @ResponseBody
     @RequiresRoles(RoleSign.ADMIN)
-    public JsonResult settingDrivingConfig(@RequestBody @Valid DSSetting dsSetting) {
+    public JsonResult settingDrivingConfig(@RequestBody @Valid DSSetting dsSetting , BindingResult result) {
+
+        if (result.hasErrors()) {
+            return getErrors(result);
+        }
 
         dsSetting.setDsId(getManageUser().getDsId());
         //{"time":[{"start":"","stop":""},{"start":"","stop":""}],"size":3}
@@ -292,6 +290,26 @@ public class ManageUserController extends BaseManageControllet {
         } else {
             return new JsonResult("更改驾校配置设置失败", ErrorDef.FAILURE);
         }
+    }
+
+    /**
+     * 管理员更改驾校配置设置
+     *
+     * @param entitys
+     * @return
+     */
+    @RequestMapping(value = "/postAppointment", method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresRoles(RoleSign.ADMIN)
+    public JsonResult postAppointment(@RequestBody List<AppointmentSt> entitys , BindingResult result) {
+
+        if (result.hasErrors()) {
+            return getErrors(result);
+        }
+
+
+
+        return null;
     }
 
 

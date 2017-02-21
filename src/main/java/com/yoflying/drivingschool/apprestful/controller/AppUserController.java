@@ -41,7 +41,7 @@ public class AppUserController {
     @RequestMapping(value = "/loginPost", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult loginPost(@RequestBody RestAccessToken token) {
-        logger.info("coachstudent" + token.getUsername() + "---------" + token.getHost());
+        logger.info("coachstudent -------" + token.getUsername() + "---------" + token.getHost());
 
         if (StringUtils.isEmpty(token.getUsername()) || StringUtils.isEmpty(token.getUsername())) {
             //测试上传ლ(°◕‵ƹ′◕ლ)
