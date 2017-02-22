@@ -45,6 +45,9 @@ public class ManageServiceFacade {
     @Autowired
     AppointmentStService appointmentStService;
 
+    @Autowired
+    CoachTestAddressService coachTestAddressService;
+
     public int createManage(ManageUser manageUser) {
 
         int err = manageUserService.insertManage(manageUser);
@@ -149,6 +152,21 @@ public class ManageServiceFacade {
                 StringUtil.isEmpty(date) ? TimeUtils.DateToString(new Date(), TimeUtils.YYYY_MM_DD) : date);
 
         return appointmentSts;
+    }
+
+    public CoachTestaAddress getTestAddress(Long coachId, Integer testCourse) {
+        List<CoachTestaAddress> date = coachTestAddressService.findCTAByUserIdAndCoures(coachId, testCourse);
+        return date.size() > 0 ? date.get(0) : null ;
+    }
+
+    public int saveTestAddress(CoachTestaAddress coachTestaAddress) {
+       int ret = coachTestAddressService.insertCoachTestAddress(coachTestaAddress);
+        return ret;
+    }
+
+    public int updateTestAddress(Long id, String testAddress) {
+        int ret = coachTestAddressService.updateCTAByUserIdAndCoures(id, testAddress);
+        return ret;
     }
 
 }

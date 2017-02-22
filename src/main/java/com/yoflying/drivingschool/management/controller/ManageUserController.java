@@ -361,5 +361,50 @@ public class ManageUserController extends BaseManageControllet {
         return new JsonResult<List<AppointmentSt>> (ErrorDef.SUCCESS, "查询成功", appointmentStList);
     }
 
+    /**
+     * 根据驾校教练id 和 练习科目 查找练习场地信息
+     * @param coachId
+     * @param testCourse
+     * @return
+     */
+    @ResponseBody
+    @RequiresRoles(RoleSign.ADMIN)
+    @RequestMapping(value = "/getTestAddress")
+    public JsonResult testAddress(Long coachId, Integer testCourse) {
+
+        CoachTestaAddress coachTestaAddress = manageServiceFacade.getTestAddress(coachId, testCourse);
+
+        return new JsonResult<CoachTestaAddress> (ErrorDef.SUCCESS, "查询成功", coachTestaAddress);
+    }
+
+    /**
+     * 根据驾校教练id 和 练习科目 更新 or 保存 驾校练习场地信息
+     * @param coachId
+     * @param testCourse
+     * @param testAddress
+     * @return
+     */
+    @ResponseBody
+    @RequiresRoles(RoleSign.ADMIN)
+    @RequestMapping(value = "/saveTestAddress")
+    public JsonResult saveTestAddress(Long coachId, Integer testCourse, String testAddress) {
+
+        CoachTestaAddress coachTestaAddress = manageServiceFacade.getTestAddress(coachId, testCourse);
+
+        int ret = 0;
+        if (coachTestaAddress ==  null && !StringUtils.isEmpty(testAddress)) {
+            CoachTestaAddress testAdd = new CoachTestaAddress();
+            testAdd.setTestAddress(testAddress);
+            testAdd.setUserId(coachId);
+            testAdd.setTestCourse(testCourse);
+            ret =  manageServiceFacade.saveTestAddress(testAdd);
+        } else if (!StringUtils.isEmpty(testAddress)){
+            ret = manageServiceFacade.updateTestAddress(coachTestaAddress.getId(), testAddress);
+        }
+
+        return ret > 0 ? new JsonResult<CoachTestaAddress> ("操作成功", ErrorDef.SUCCESS)
+                :  new JsonResult<CoachTestaAddress> ("操作失败", ErrorDef.SUCCESS);
+    }
+
 
 }

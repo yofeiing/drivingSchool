@@ -4,6 +4,7 @@ import com.yoflying.drivingschool.domain.model.CoachTestaAddress;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
@@ -20,4 +21,11 @@ public interface CoachTestaAddressMapper {
 
     @Select("SELECT * FROM coach_test_address WHERE userId = #{userId}")
     List<CoachTestaAddress> findCTAByUserIdAndCoures(@Param("userId") Long userId);
+
+    @Select("SELECT * FROM coach_test_address WHERE userId = #{userId} and testCourse = #{testCourse}")
+    List<CoachTestaAddress> findCTAByUserIdAndCoures(@Param("userId") Long userId, @Param("testCourse") Integer testCourse);
+
+    @Update("UPDATE coach_test_address SET testAddress = #{testAddress}"+
+            ",modifyTime = NOW() WHERE id = #{id}")
+    int updateCTAByUserIdAndCoures(@Param("id") Long id, @Param("testAddress") String testAddress);
 }
