@@ -22,8 +22,8 @@ public class CoachTestAddressImpl implements CoachTestAddressService{
         return coachTestaAddressMapper.insertCoachTestAddress(coachTestaAddress);
     }
 
-    public List<CoachTestaAddress> findCTAByUserIdAndCoures(Long userId) {
-        return coachTestaAddressMapper.findCTAByUserIdAndCoures(userId);
+    public List<CoachTestaAddress> findCTAByUserId(Long userId) {
+        return coachTestaAddressMapper.findCTAByUserId(userId);
     }
 
     public List<CoachTestaAddress> findCTAByUserIdAndCoures(Long userId, Integer testCourse) {

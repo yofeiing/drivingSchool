@@ -20,7 +20,7 @@ public interface CoachTestaAddressMapper {
     int insertCoachTestAddress(CoachTestaAddress coachTestaAddress);
 
     @Select("SELECT * FROM coach_test_address WHERE userId = #{userId}")
-    List<CoachTestaAddress> findCTAByUserIdAndCoures(@Param("userId") Long userId);
+    List<CoachTestaAddress> findCTAByUserId(@Param("userId") Long userId);
 
     @Select("SELECT * FROM coach_test_address WHERE userId = #{userId} and testCourse = #{testCourse}")
     List<CoachTestaAddress> findCTAByUserIdAndCoures(@Param("userId") Long userId, @Param("testCourse") Integer testCourse);

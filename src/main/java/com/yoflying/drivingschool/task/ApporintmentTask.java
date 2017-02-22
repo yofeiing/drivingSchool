@@ -53,7 +53,7 @@ public class ApporintmentTask {
                         continue;
                     }
                     List<DsLeave> dsLeaves = dsLeaveService.findDsLeavebyDsIDandCoachId(drivingSchool.getId(), coachStudentUser.getId());
-                    List<CoachTestaAddress> ctas = coachTestAddressService.findCTAByUserIdAndCoures(coachStudentUser.getId());
+                    List<CoachTestaAddress> ctas = coachTestAddressService.findCTAByUserId(coachStudentUser.getId());
                     String cta2 = null;
                     String cta3 = null;
                     for (CoachTestaAddress c : ctas) {

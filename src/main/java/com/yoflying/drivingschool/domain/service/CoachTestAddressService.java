@@ -13,7 +13,7 @@ public interface CoachTestAddressService {
 
     int insertCoachTestAddress(CoachTestaAddress coachTestaAddress);
 
-    List<CoachTestaAddress> findCTAByUserIdAndCoures(Long userId);
+    List<CoachTestaAddress> findCTAByUserId(Long userId);
 
     List<CoachTestaAddress> findCTAByUserIdAndCoures(Long userId, Integer testCourse);
 
