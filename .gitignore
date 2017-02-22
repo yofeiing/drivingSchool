@@ -4,5 +4,6 @@ gen/
 .classpath
 .idea/
 .project
-HelloWorldSpringMVC.iml
+com.yoflying.drivingschool.iml
+drivingSchool.iml
 target/
