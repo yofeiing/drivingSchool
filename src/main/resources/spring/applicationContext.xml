@@ -25,5 +25,15 @@
         </property>
     </bean>
 
+    <!--加入i18n 国际化支持-->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:i18n/message</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

@@ -77,6 +77,10 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!--i18n 语言判断拦截-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
 
     <!-- 配置freeMarker模板加載地址 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

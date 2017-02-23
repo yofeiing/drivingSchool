@@ -20,6 +20,8 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -49,6 +51,8 @@ public class ManageUserController extends BaseManageControllet {
     @Autowired
     ManageServiceFacade manageServiceFacade;
 
+    @Autowired
+    MessageSource messageSource;
 
     /**
      * 管理员页面登录页面
@@ -123,6 +127,9 @@ public class ManageUserController extends BaseManageControllet {
         ManageUser manageUser = getManageUser();
 
         map.put("online",sessionDAO.getActiveSessions().size());
+
+        //i18n TEST
+        map.put("i18n", messageSource.getMessage("UnauthorizedException.message", null, LocaleContextHolder.getLocale()));
 
 //        apporintmentTask.appointmentTask();
 
