@@ -135,6 +135,18 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.0-b01</version>
         </dependency>
+        <!--Jpa + 通用 通用Mapper-->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>3.3.9</version>
+        </dependency>
+        <!--Jpa + 通用 通用Mapper-->
         <!--mybatis pagehelper 开始-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>

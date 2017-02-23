@@ -1,6 +1,8 @@
 package com.yoflying.drivingschool.management.controller;
 
+import com.yoflying.drivingschool.domain.jpa.StudentsDetail;
 import com.yoflying.drivingschool.domain.model.*;
+import com.yoflying.drivingschool.domain.service.StudentsDetailService;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.management.BaseManageControllet;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -105,6 +109,9 @@ public class ManageUserController extends BaseManageControllet {
     @Autowired
     private SessionDAO sessionDAO;
 
+    @Autowired
+    StudentsDetailService studentsDetailService;
+
     @RequestMapping(value = "/index")
     @RequiresRoles(RoleSign.ADMIN)
     public String index(ModelMap map) {
@@ -118,6 +125,19 @@ public class ManageUserController extends BaseManageControllet {
         map.put("online",sessionDAO.getActiveSessions().size());
 
 //        apporintmentTask.appointmentTask();
+
+        /**Test jpa */
+
+
+        StudentsDetail sd = new StudentsDetail();
+        sd.setUserId(1L);
+        sd.setDsId(1L);
+        sd.setArrearage(new BigDecimal("1000.15"));
+        sd.setFeePayable(new BigDecimal("1000.15"));
+        sd.setStatus(1);
+        sd.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        studentsDetailService.saveStudentsDetail(sd);
+
 
         return "/manage/index.ftl";
     }

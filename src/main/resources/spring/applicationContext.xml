@@ -16,6 +16,14 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.yoflying.drivingschool.domain.dao"/>
     </bean>
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.yoflying.drivingschool.domain.dao"/>
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
+    </bean>
 
 
 </beans>
