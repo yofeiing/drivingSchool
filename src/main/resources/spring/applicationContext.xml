@@ -11,20 +11,6 @@
     <context:component-scan base-package="com.yoflying.drivingschool.**.facade"/>
     <context:component-scan base-package="com.yoflying.drivingschool.domain.service.impl"/>
 
-
-    <!--自动扫描Mybatis接口-->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yoflying.drivingschool.domain.dao"/>
-    </bean>
-    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yoflying.drivingschool.domain.dao"/>
-        <property name="properties">
-            <value>
-                mappers=tk.mybatis.mapper.common.Mapper
-            </value>
-        </property>
-    </bean>
-
     <!--加入i18n 国际化支持-->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>

@@ -124,4 +124,14 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.yoflying.drivingschool.domain.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
+    <!--jpa 通用 mapper-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.yoflying.drivingschool.domain.dao"/>
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
+    </bean>
+
 </beans>
