@@ -1,7 +1,7 @@
 package com.yoflying.drivingschool.domain.dao;
 
-import com.alibaba.fastjson.JSONObject;
-import com.yoflying.drivingschool.domain.model.AppointmentSt;
+import com.yoflying.drivingschool.domain.CommonMapper;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import org.apache.ibatis.annotations.*;
 import org.mybatis.spring.annotation.MapperScan;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Created by liqiang on 16/12/15.
  */
 @MapperScan
-public interface AppointmentStMapper {
+public interface AppointmentStMapper extends CommonMapper<AppointmentSt> {
 
     @Insert("INSERT INTO appointment_st (dsId,coachId,testCourse,testAddress,studentsIds,appointmentDate,status,modifyTime)" +
             " VALUES( #{dsId},#{coachId},#{testCourse},#{testAddress},#{studentsIds},#{appointmentDate},#{status},NOW())")

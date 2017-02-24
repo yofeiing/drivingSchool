@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.StringUtil;
 import com.yoflying.drivingschool.constdef.Const;
 import com.yoflying.drivingschool.constdef.ErrorDef;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.*;
 import com.yoflying.drivingschool.domain.service.*;
 import com.yoflying.drivingschool.entity.DSInfoEntity;

@@ -1,14 +1,13 @@
 package com.yoflying.drivingschool.coachStudents.facade;
 
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
-import com.yoflying.drivingschool.domain.model.AppointmentSt;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.domain.model.DrivingSchool;
 import com.yoflying.drivingschool.domain.service.AppointmentStService;
 import com.yoflying.drivingschool.domain.service.CoachStudentService;
 import com.yoflying.drivingschool.domain.service.DrivingSchoolService;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
-import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,22 +1,37 @@
-package com.yoflying.drivingschool.domain.model;
+package com.yoflying.drivingschool.domain.jpa;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yoflying.drivingschool.domain.model.BaseModel;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
  * Created by liqiang on 16/12/15.
  */
-public class AppointmentSt extends BaseModel{
+@Table(name = "appointment_st")
+public class AppointmentSt extends BaseModel {
+    @Id
     private Long id;
+    @Column(name = "dsId")
     private Long dsId;
+    @Column(name = "coachId")
     private Long coachId;
+    @Column(name = "testCourse")
     private Integer testCourse;
+    @Column(name = "testAddress")
     private String testAddress;
+    @Column(name = "studentsIds")
     private String studentsIds;
+    @Column(name = "appointmentDate")
     private String appointmentDate;
+    @Column(name = "status")
     private int status;
+    @Column(name = "createTime")
     private Timestamp createTime;
+    @Column(name = "modifyTime")
     private Timestamp modifyTime;
 
     public Long getId() {

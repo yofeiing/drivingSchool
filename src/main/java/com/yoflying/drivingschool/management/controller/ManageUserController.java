@@ -1,5 +1,6 @@
 package com.yoflying.drivingschool.management.controller;
 
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.jpa.StudentsDetail;
 import com.yoflying.drivingschool.domain.model.*;
 import com.yoflying.drivingschool.domain.service.StudentsDetailService;

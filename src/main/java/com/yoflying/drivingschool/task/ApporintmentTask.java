@@ -3,6 +3,7 @@ package com.yoflying.drivingschool.task;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.*;
 import com.yoflying.drivingschool.domain.service.*;
 import com.yoflying.drivingschool.utils.TimeUtils;

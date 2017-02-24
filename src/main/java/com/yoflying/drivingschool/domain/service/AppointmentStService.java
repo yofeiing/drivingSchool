@@ -1,8 +1,6 @@
 package com.yoflying.drivingschool.domain.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.yoflying.drivingschool.domain.model.AppointmentSt;
-import org.apache.ibatis.annotations.Param;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 
 import java.util.List;
 
@@ -13,6 +11,7 @@ public interface AppointmentStService {
 
     int insertAppointmentSt(AppointmentSt appointmentSt);
 
+    int insertAppointmentStList(List<AppointmentSt> appointmentSt);
 
     int updateAppointmentSt( Integer status, Long coachId,  Long dsId, String studentsIds);
 

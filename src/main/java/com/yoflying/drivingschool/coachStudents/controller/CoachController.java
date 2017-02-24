@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.yoflying.drivingschool.coachStudents.BaseCsController;
 import com.yoflying.drivingschool.coachStudents.facade.CoachStFacade;
 import com.yoflying.drivingschool.constdef.ErrorDef;
-import com.yoflying.drivingschool.domain.model.AppointmentSt;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.utils.json.JsonResult;

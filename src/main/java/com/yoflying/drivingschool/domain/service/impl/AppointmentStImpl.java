@@ -1,8 +1,7 @@
 package com.yoflying.drivingschool.domain.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.yoflying.drivingschool.domain.dao.AppointmentStMapper;
-import com.yoflying.drivingschool.domain.model.AppointmentSt;
+import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.service.AppointmentStService;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +19,10 @@ public class AppointmentStImpl implements AppointmentStService {
 
     public int insertAppointmentSt(AppointmentSt appointmentSt) {
         return appointmentStMapper.insertAppointmentSt(appointmentSt);
+    }
+
+    public int insertAppointmentStList(List<AppointmentSt> appointmentSt) {
+        return appointmentStMapper.insertList(appointmentSt);
     }
 
     public int updateAppointmentSt(Integer status, Long coachId, Long dsId, String studentsIds) {
