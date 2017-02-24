@@ -335,9 +335,12 @@ public class ManageUserController extends BaseManageControllet {
             return getErrors(result);
         }
 
+        entitys.forEach(appSt-> {
+
+        });
 
 
-        return null;
+        return new JsonResult("操作成功", ErrorDef.SUCCESS);
     }
 
 
