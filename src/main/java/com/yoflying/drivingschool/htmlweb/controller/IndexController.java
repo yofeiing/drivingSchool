@@ -1,14 +1,20 @@
 package com.yoflying.drivingschool.htmlweb.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.dao.LoveMapper;
+import com.yoflying.drivingschool.domain.dao.TestDataMapper;
+import com.yoflying.drivingschool.domain.jpa.TestData;
+import com.yoflying.drivingschool.domain.model.CoachTestaAddress;
 import com.yoflying.drivingschool.entity.LoveEntity;
+import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +84,20 @@ public class IndexController {
 
 
         return "/love3.ftl";
+    }
+
+
+    @Autowired
+    TestDataMapper testDataMapper;
+    @RequestMapping(value = "/testData", method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public JsonResult testData(TestData data) {
+
+        int ret = testDataMapper.insert(data);
+
+        return ret > 0 ? new JsonResult<CoachTestaAddress> ("操作成功", ErrorDef.SUCCESS)
+                :  new JsonResult<CoachTestaAddress> ("操作失败", ErrorDef.SUCCESS);
     }
 
     @RequestMapping("/exception")

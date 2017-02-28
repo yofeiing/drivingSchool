@@ -45,7 +45,7 @@ public class MyExceptionHandler {
             return new JsonResult<ModelMap>(ErrorDef.FAILURE, "当前用户权限不够", modelMap);
 
         } else {
-            response.setStatus(HttpStatus.SC_UNAUTHORIZED);
+            response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
 
             modelMap.put("error", ex.getMessage() == null ? ex.getStackTrace() : ex.getMessage());
         }
