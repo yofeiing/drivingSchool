@@ -170,4 +170,9 @@ public class ManageServiceFacade {
         return ret;
     }
 
+    public int saveAppointmentSt(AppointmentSt st) {
+        int ret = appointmentStService.insertAppointmentSt(st);
+        return ret;
+    }
+
 }

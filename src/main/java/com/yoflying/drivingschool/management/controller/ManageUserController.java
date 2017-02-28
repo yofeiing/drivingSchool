@@ -334,13 +334,13 @@ public class ManageUserController extends BaseManageControllet {
         if (result.hasErrors()) {
             return getErrors(result);
         }
-
+        final int[] ret = new int[1];
         entitys.forEach(appSt-> {
-
+             ret[0] = manageServiceFacade.saveAppointmentSt(appSt);
         });
 
-
-        return new JsonResult("操作成功", ErrorDef.SUCCESS);
+        return ret[0] > 0 ? new JsonResult<CoachTestaAddress> ("操作成功", ErrorDef.SUCCESS)
+                :  new JsonResult<CoachTestaAddress> ("操作失败", ErrorDef.SUCCESS);
     }
 
 
