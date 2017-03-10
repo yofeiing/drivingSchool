@@ -131,7 +131,7 @@ public class FastJsonHttpMessageConverter2
     protected Object readInternal(Class<? extends Object> clazz, //
                                   HttpInputMessage inputMessage //
     ) throws IOException, HttpMessageNotReadableException {
-
+        HttpHeaders headers = inputMessage.getHeaders();
         InputStream in = inputMessage.getBody();
         return JSON.parseObject(in, fastJsonConfig.getCharset(), clazz, fastJsonConfig.getFeatures());
     }
@@ -176,7 +176,7 @@ public class FastJsonHttpMessageConverter2
                        Class<?> contextClass, //
                        HttpInputMessage inputMessage //
     ) throws IOException, HttpMessageNotReadableException {
-
+        inputMessage.getHeaders();
         InputStream in = inputMessage.getBody();
         return JSON.parseObject(in, fastJsonConfig.getCharset(), type, fastJsonConfig.getFeatures());
     }
