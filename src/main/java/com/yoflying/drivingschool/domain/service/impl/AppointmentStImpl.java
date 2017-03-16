@@ -4,6 +4,7 @@ import com.yoflying.drivingschool.domain.dao.AppointmentStMapper;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.service.AppointmentStService;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * Created by liqiang on 16/12/15.
  */
 @Repository
+@Transactional
 public class AppointmentStImpl implements AppointmentStService {
 
     @Resource
@@ -51,5 +53,15 @@ public class AppointmentStImpl implements AppointmentStService {
 
     public int deleteAppointmentStbyIdALL(int id) {
         return appointmentStMapper.deleteAppointmentStbyStatusALL(id);
+    }
+
+    @Override
+    public AppointmentSt appointmentStbyStatusById(long id) {
+        return appointmentStMapper.appointmentStbyStatusById(id);
+    }
+
+    @Override
+    public int updateAppointmentStById(long id, String studentsIds) {
+        return appointmentStMapper.updateAppointmentStById(id, studentsIds);
     }
 }

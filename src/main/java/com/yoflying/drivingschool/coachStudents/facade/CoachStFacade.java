@@ -1,6 +1,9 @@
 package com.yoflying.drivingschool.coachStudents.facade;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
+import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.domain.model.DrivingSchool;
@@ -10,7 +13,9 @@ import com.yoflying.drivingschool.domain.service.DrivingSchoolService;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,5 +72,29 @@ public class CoachStFacade {
         studentModel.setMyCoachId(coach == null ? 0 :coach.getId());
         studentModel.setPhone(coach == null ? "未绑定" : coach.getPhone());
         return studentModel;
+    }
+
+    public int appointmentDriving(long id, long studentsId) {
+
+        AppointmentSt st =  appointmentStService.appointmentStbyStatusById(id);
+        if (st != null) {
+            JSONObject appointmentDate = (JSONObject) JSON.parse(st.getAppointmentDate());
+            List<Long> studentsIds = (List<Long>) JSON.parse(st.getStudentsIds());
+            int size = appointmentDate.getInteger("size");
+            if (studentsIds == null) {
+                studentsIds = new ArrayList<>();
+            }
+            if (studentsIds.size() >= size) {
+                return ErrorDef.FAILURE;
+            } else {
+                studentsIds.add(studentsId);
+                int ret = appointmentStService.updateAppointmentStById(id, JSON.toJSON(studentsIds).toString());
+                if (ret >= 0) {
+                    return ret;
+                }
+            }
+        }
+
+        return ErrorDef.FAILURE;
     }
 }

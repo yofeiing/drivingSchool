@@ -22,6 +22,11 @@ public interface AppointmentStMapper extends CommonMapper<AppointmentSt> {
             "WHERE dsId = #{dsId} and coachId = #{coachId}")
     int updateAppointmentSt(@Param("status") Integer status, @Param("coachId") Long coachId, @Param("dsId") Long dsId, @Param("studentsIds") String studentsIds);
 
+    @Update("UPDATE appointment_st SET studentsIds = #{studentsIds}"+
+            ",modifyTime = NOW() " +
+            "WHERE id = #{id}")
+    int updateAppointmentStById(@Param("id") Long id, @Param("studentsIds") String studentsIds);
+
     @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and coachId = #{coachId} ORDER BY appointmentDate DESC")
     List<AppointmentSt> findAppointmentStbyDsIDandCoachId(@Param("dsId") Long dsId, @Param("coachId") Long coachId);
 
@@ -39,5 +44,8 @@ public interface AppointmentStMapper extends CommonMapper<AppointmentSt> {
     List<AppointmentSt> findAppointmentStbysDsIdToday(@Param("dsId") Long dsId, @Param("adate") String adate);
 
     @Delete("DELETE FROM appointment_st WHERE id = #{id}")
-    int deleteAppointmentStbyStatusALL(@Param("id") int id);
+    int deleteAppointmentStbyStatusALL(@Param("id") long id);
+
+    @Select("SELECT * FROM appointment_st WHERE id = #{id}")
+    AppointmentSt appointmentStbyStatusById(@Param("id") long id);
 }

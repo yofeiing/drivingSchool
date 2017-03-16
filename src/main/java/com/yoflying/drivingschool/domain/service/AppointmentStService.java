@@ -29,4 +29,9 @@ public interface AppointmentStService {
     List<AppointmentSt> findAppointmentStbysDsIdToday(Long dsId, String adate);
 
     int deleteAppointmentStbyIdALL(int status);
+
+    AppointmentSt appointmentStbyStatusById(long id);
+
+    int updateAppointmentStById(long id, String studentsIds);
+
 }

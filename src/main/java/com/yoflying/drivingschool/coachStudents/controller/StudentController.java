@@ -3,6 +3,7 @@ package com.yoflying.drivingschool.coachStudents.controller;
 import com.alibaba.fastjson.JSON;
 import com.yoflying.drivingschool.coachStudents.BaseCsController;
 import com.yoflying.drivingschool.coachStudents.facade.CoachStFacade;
+import com.yoflying.drivingschool.coachStudents.model.AppointmentModel;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
@@ -12,7 +13,9 @@ import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,6 +62,21 @@ public class StudentController extends BaseCsController {
         return new JsonResult<List<AppointmentSt>>(ErrorDef.SUCCESS, "返回数据", appointmentSts);
     }
 
+    /**
+     * 学员开始约车
+     * @return
+     */
+    @RequestMapping(value = "/postAppointment", method = RequestMethod.POST)
+    @RequiresRoles(RoleSign.STUDENT)
+    @ResponseBody
+    public JsonResult postAppointment(@RequestBody AppointmentModel appointmentModel) {
+        if (appointmentModel.getId() == null || appointmentModel.getStudentsId() == null) {
+            return new JsonResult("参数错误", ErrorDef.FAILURE);
+        }
+        int ret = coachStFacade.appointmentDriving(appointmentModel.getId(), appointmentModel.getStudentsId());
 
+        return ret > 0 ? new JsonResult<List<AppointmentSt>>("预约成功", ErrorDef.SUCCESS)
+                : new JsonResult("预约失败", ErrorDef.FAILURE);
+    }
 
 }
