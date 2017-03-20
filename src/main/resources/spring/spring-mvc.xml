@@ -12,7 +12,6 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task.xsd">
 
-
     <!--使Spring支持自动检测组件，如注解的 Controller-->
     <context:component-scan base-package="com.yoflying.drivingschool.**.controller"/>
     <context:component-scan base-package="com.yoflying.drivingschool.exception"/>
@@ -22,7 +21,7 @@
     <!-- 启用shrio授权注解拦截方式 -->
     <aop:config proxy-target-class="true"/>
 
-    <!--<mvc:annotation-driven/>-->
+    <mvc:annotation-driven/>
 
     <task:annotation-driven/>
 

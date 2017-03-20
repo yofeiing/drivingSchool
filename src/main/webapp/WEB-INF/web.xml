@@ -22,7 +22,7 @@
     <!--扫描spring 配置文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:spring/applicationContext.xml</param-value>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
 
     <listener>
@@ -77,5 +77,6 @@
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
+
 
 </web-app>

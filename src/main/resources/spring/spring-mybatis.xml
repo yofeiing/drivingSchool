@@ -53,12 +53,15 @@
         <property name="filters" value="stat"/>
     </bean>
 
+    <!-- 启用对事务注解的支持 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!--<tx:annotation-driven proxy-target-class = "true" />-->
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- 启用对事务注解的支持 -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
     <!-- Cache配置 -->
     <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/>
