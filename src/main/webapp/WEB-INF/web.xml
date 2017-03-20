@@ -22,7 +22,7 @@
     <!--扫描spring 配置文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:spring/*.xml</param-value>
+        <param-value>classpath*:spring/applicationContext.xml</param-value>
     </context-param>
 
     <listener>
@@ -61,59 +61,21 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--防止 spring 内存溢出-->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
 
-    <!--
-       -This filter is a plain Servlet Filter and therefore it can be used in combination with any web framework
-       -(not just Spring MVC). Simply add this filter to your web.xml, and a POST with a hidden _method parameter will be
-       -converted into the corresponding HTTP method request
-   -->
-    <!--<filter>-->
-        <!--<filter-name>httpMethodFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>-->
-    <!--</filter>-->
-
-    <!--<filter-mapping>-->
-        <!--<filter-name>httpMethodFilter</filter-name>-->
-        <!--<servlet-name>SpringDispatcher</servlet-name>-->
-    <!--</filter-mapping>-->
-
-    <!-- 配置log4j配置文件路径 -->
-    <!--<context-param>-->
-        <!--<param-name>log4jConfigLocation</param-name>-->
-        <!--<param-value>classpath:config/log4j.properties</param-value>-->
-    <!--</context-param>-->
-    <!-- 60s 检测日志配置 文件变化 -->
-    <!--<context-param>-->
-        <!--<param-name>log4jRefreshInterval</param-name>-->
-        <!--<param-value>60000</param-value>-->
-    <!--</context-param>-->
-
-    <!-- 配置Log4j监听器 -->
-    <!--<listener>-->
-        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
-    <!--</listener>-->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.xhtml</welcome-file>
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-
-    <!--错误页面提示-->
-    <!--<error-page>-->
-        <!--<exception-type>java.lang.Exception</exception-type>-->
-        <!--<location>/exception.jsp</location>-->
-    <!--</error-page>-->
+    >
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
-    <!--<error-page>-->
-        <!--<error-code>505</error-code>-->
-        <!--<location>/exception.jsp</location>-->
-    <!--</error-page>-->
-
-    <!--分布式加上-->
-    <!--<distributable/>-->
 
 </web-app>

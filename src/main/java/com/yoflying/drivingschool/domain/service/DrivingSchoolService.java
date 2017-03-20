@@ -13,7 +13,7 @@ public interface DrivingSchoolService {
 
     int insertByDrivingSchool(DrivingSchool drivingSchool);
 
-    DrivingSchool findByDrivingSchool( @Param("id") long id);
+    DrivingSchool findByDrivingSchool(long id);
 
     List<DrivingSchool> findDrivingSchoolByStatusAll();
 }

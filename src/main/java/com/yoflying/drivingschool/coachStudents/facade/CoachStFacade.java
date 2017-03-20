@@ -74,6 +74,7 @@ public class CoachStFacade {
         return studentModel;
     }
 
+    @Transactional
     public int appointmentDriving(long id, long studentsId) {
 
         AppointmentSt st =  appointmentStService.appointmentStbyStatusById(id);

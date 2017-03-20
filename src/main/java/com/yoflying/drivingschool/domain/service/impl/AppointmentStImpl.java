@@ -13,7 +13,6 @@ import java.util.List;
  * Created by liqiang on 16/12/15.
  */
 @Repository
-@Transactional
 public class AppointmentStImpl implements AppointmentStService {
 
     @Resource

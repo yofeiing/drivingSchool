@@ -3,33 +3,28 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task.xsd">
 
 
     <!--使Spring支持自动检测组件，如注解的 Controller-->
+    <mvc:annotation-driven/>
     <context:component-scan base-package="com.yoflying.drivingschool.**.controller"/>
     <context:component-scan base-package="com.yoflying.drivingschool.exception"/>
+    <context:component-scan base-package="com.yoflying.drivingschool.**.facade"/>
     <context:component-scan base-package="com.yoflying.drivingschool.task"/>
     <context:component-scan base-package="com.yoflying.drivingschool.aop"/>
 
-    <!--扫描controller（controller层注入）-->
-    <context:annotation-config/>
-    <mvc:annotation-driven/>
     <task:annotation-driven/>
 
     <!-- 启用AspectJ对Annotation的支持 -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-
     <!-- 启用shrio授权注解拦截方式 -->
     <aop:config proxy-target-class="true"/>
 
@@ -52,6 +47,7 @@
                     </list>
                 </property>
             </bean>
+            <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
