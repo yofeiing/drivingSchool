@@ -22,7 +22,7 @@ import java.util.List;
  * Created by liqiang on 16/12/18.
  */
 @Service
-public class CoachStFacade {
+public class CoachStFacade implements CoachStFacadeService{
 
     @Autowired
     AppointmentStService appointmentStService;
@@ -33,6 +33,7 @@ public class CoachStFacade {
     @Autowired
     CoachStudentService coachStudentService;
 
+    @Transactional
     public List<AppointmentSt> getAppointmentInfo(long dsId, long coachId, int testCoures) {
         List<AppointmentSt>  appointmentSts = appointmentStService.findAppointmentStbyCoachIdandCoures(dsId, coachId, testCoures);
         return appointmentSts;
@@ -51,7 +52,7 @@ public class CoachStFacade {
     }
 
     @Transactional
-    public List<AppointmentSt> getAppointmentInfo(long dsId, long coachId) {
+    public List<AppointmentSt> getAppointmentInfo2(long dsId, long coachId) {
         List<AppointmentSt>  appointmentSts = appointmentStService.findAppointmentStbyDsIDandCoachId(dsId, coachId);
         return appointmentSts;
     }
@@ -75,7 +76,7 @@ public class CoachStFacade {
         return studentModel;
     }
 
-//    @Transactional
+    @Transactional
     public int appointmentDriving(long id, long studentsId) {
 
         AppointmentSt st =  appointmentStService.appointmentStbyStatusById(id);

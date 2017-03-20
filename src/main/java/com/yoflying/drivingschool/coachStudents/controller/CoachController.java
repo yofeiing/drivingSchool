@@ -3,6 +3,7 @@ package com.yoflying.drivingschool.coachStudents.controller;
 import com.alibaba.fastjson.JSON;
 import com.yoflying.drivingschool.coachStudents.BaseCsController;
 import com.yoflying.drivingschool.coachStudents.facade.CoachStFacade;
+import com.yoflying.drivingschool.coachStudents.facade.CoachStFacadeService;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
@@ -26,7 +27,7 @@ import java.util.List;
 public class CoachController extends BaseCsController {
 
     @Autowired
-    CoachStFacade coachStFacade;
+    CoachStFacadeService coachStFacade;
 
     @RequestMapping("/index")
     @RequiresRoles(RoleSign.COACH)
@@ -35,7 +36,7 @@ public class CoachController extends BaseCsController {
 
         map.put("dsInfo", JSON.toJSONString(coachStFacade.getDsInfo(coach.getDsId())));
         map.put("coachInfo", JSON.toJSONString(coach));
-        map.put("appointment", JSON.toJSONString(coachStFacade.getAppointmentInfo(coach.getDsId(), coach.getId())));
+        map.put("appointment", JSON.toJSONString(coachStFacade.getAppointmentInfo2(coach.getDsId(), coach.getId())));
 
         return "/coachSt/coach.ftl";
     }
@@ -49,7 +50,7 @@ public class CoachController extends BaseCsController {
     public JsonResult getAppointment() {
         CoachStudentUser coach = getCoachStudentUser();
 
-        List<AppointmentSt> appointmentSts = coachStFacade.getAppointmentInfo(coach.getDsId(), coach.getId());
+        List<AppointmentSt> appointmentSts = coachStFacade.getAppointmentInfo2(coach.getDsId(), coach.getId());
 //        if (appointmentSts != null && appointmentSts.size() > 0)
         return new JsonResult<List<AppointmentSt>>(ErrorDef.SUCCESS, "返回数据", appointmentSts);
     }

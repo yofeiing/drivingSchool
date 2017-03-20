@@ -3,6 +3,7 @@ package com.yoflying.drivingschool.coachStudents.controller;
 import com.alibaba.fastjson.JSON;
 import com.yoflying.drivingschool.coachStudents.BaseCsController;
 import com.yoflying.drivingschool.coachStudents.facade.CoachStFacade;
+import com.yoflying.drivingschool.coachStudents.facade.CoachStFacadeService;
 import com.yoflying.drivingschool.coachStudents.model.AppointmentModel;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
 import com.yoflying.drivingschool.constdef.ErrorDef;
@@ -13,7 +14,6 @@ import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +30,7 @@ import java.util.List;
 public class StudentController extends BaseCsController {
 
     @Autowired
-    CoachStFacade coachStFacade;
+    CoachStFacadeService coachStFacade;
 
     @RequiresRoles(RoleSign.STUDENT)
     @RequestMapping("/index")
