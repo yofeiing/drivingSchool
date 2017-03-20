@@ -50,6 +50,7 @@ public class CoachStFacade {
         return dsInfoEntity;
     }
 
+//    @Transactional
     public List<AppointmentSt> getAppointmentInfo(long dsId, long coachId) {
         List<AppointmentSt>  appointmentSts = appointmentStService.findAppointmentStbyDsIDandCoachId(dsId, coachId);
         return appointmentSts;
@@ -74,7 +75,7 @@ public class CoachStFacade {
         return studentModel;
     }
 
-    @Transactional
+//    @Transactional
     public int appointmentDriving(long id, long studentsId) {
 
         AppointmentSt st =  appointmentStService.appointmentStbyStatusById(id);
