@@ -1,15 +1,15 @@
 package com.yoflying.drivingschool.management.controller;
 
+import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.jpa.StudentsDetail;
 import com.yoflying.drivingschool.domain.model.*;
+import com.yoflying.drivingschool.domain.service.ManageUserService;
 import com.yoflying.drivingschool.domain.service.StudentsDetailService;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.management.BaseManageControllet;
-import com.yoflying.drivingschool.constdef.ErrorDef;
-import com.yoflying.drivingschool.domain.service.ManageUserService;
-import com.yoflying.drivingschool.management.facade.ManageServiceFacade;
+import com.yoflying.drivingschool.management.facade.ManageService;
 import com.yoflying.drivingschool.management.model.CoachStatusCouresModel;
 import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.SecurityUtils;
@@ -50,7 +50,7 @@ public class ManageUserController extends BaseManageControllet {
     ManageUserService manageUserService;
 
     @Autowired
-    ManageServiceFacade manageServiceFacade;
+    ManageService manageServiceFacade;
 
     @Autowired
     MessageSource messageSource;

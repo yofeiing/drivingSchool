@@ -24,7 +24,7 @@ import java.util.List;
  * Created by liqiang on 16/12/15.
  */
 @Service
-public class ManageServiceFacade {
+public class ManageServiceFacade implements ManageService{
 
     private final Logger logger = LoggerFactory.getLogger(ManageServiceFacade.class);
 

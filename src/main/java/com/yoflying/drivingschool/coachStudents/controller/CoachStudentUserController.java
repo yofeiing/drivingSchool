@@ -6,7 +6,7 @@ import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
 import com.yoflying.drivingschool.infrastructure.realm.RoleSign;
 import com.yoflying.drivingschool.infrastructure.token.ManageToken;
-import com.yoflying.drivingschool.management.facade.ManageServiceFacade;
+import com.yoflying.drivingschool.management.facade.ManageService;
 import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +32,7 @@ public class CoachStudentUserController extends BaseCsController{
     private final Logger logger = LoggerFactory.getLogger(CoachStudentUserController.class);
 
     @Autowired
-    ManageServiceFacade manageServiceFacade;
+    ManageService manageServiceFacade;
 
 
     @RequestMapping(value = "/login")
