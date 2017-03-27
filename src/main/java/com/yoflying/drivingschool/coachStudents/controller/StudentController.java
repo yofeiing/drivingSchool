@@ -79,4 +79,15 @@ public class StudentController extends BaseCsController {
                 : new JsonResult("预约失败", ErrorDef.FAILURE);
     }
 
+    /**
+     * 学员未来约车信息
+     * @return
+     */
+    @RequestMapping(value = "/futureAppointment", method = RequestMethod.GET)
+    @RequiresRoles(RoleSign.STUDENT)
+    @ResponseBody
+    public JsonResult futureAppointment() {
+        return  new JsonResult<>(ErrorDef.SUCCESS, "返回数据", coachStFacade.futureAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId()));
+    }
+
 }

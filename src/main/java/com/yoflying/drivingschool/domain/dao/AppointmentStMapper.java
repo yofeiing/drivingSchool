@@ -27,16 +27,16 @@ public interface AppointmentStMapper extends CommonMapper<AppointmentSt> {
             "WHERE id = #{id}")
     int updateAppointmentStById(@Param("id") Long id, @Param("studentsIds") String studentsIds);
 
-    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and coachId = #{coachId} ORDER BY appointmentDate DESC")
+    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and coachId = #{coachId} ORDER BY createTime DESC")
     List<AppointmentSt> findAppointmentStbyDsIDandCoachId(@Param("dsId") Long dsId, @Param("coachId") Long coachId);
 
-    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and coachId = #{coachId} and  testCourse = #{testCourse} ORDER BY appointmentDate DESC")
+    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and coachId = #{coachId} and  testCourse = #{testCourse} ORDER BY createTime DESC")
     List<AppointmentSt> findAppointmentStbyCoachIdandCoures(@Param("dsId") Long dsId, @Param("coachId") Long coachId, @Param("testCourse") int testCoures);
 
-    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and studentsIds LIKE '%${stId}%' ORDER BY appointmentDate DESC")
+    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and studentsIds LIKE '%${stId}%' ORDER BY createTime ASC")
     List<AppointmentSt> findAppointmentStbyDsIDandStIdAll(@Param("dsId") Long dsId, @Param("stId") Long stId);
 
-    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} ORDER BY appointmentDate DESC")
+    @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} ORDER BY createTime DESC")
     List<AppointmentSt> findAppointmentStbysDsIdALL(@Param("dsId") Long dsId);
 
     @Select("SELECT * FROM appointment_st WHERE dsId = #{dsId} and appointmentDate LIKE concat('%',#{adate},'%') " +

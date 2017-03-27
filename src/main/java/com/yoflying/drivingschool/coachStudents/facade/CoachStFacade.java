@@ -100,4 +100,9 @@ public class CoachStFacade implements CoachStFacadeService{
 
         return ErrorDef.FAILURE;
     }
+
+    @Override
+    public List<AppointmentSt> futureAppointment(long dsId, long stId) {
+        return appointmentStService.findAppointmentStbyDsIDandStIdAll(dsId, stId);
+    }
 }

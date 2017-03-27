@@ -17,4 +17,5 @@ public interface CoachStFacadeService {
     CoachStudentUser getCoach(long coachId);
     StudentModel getStudentModel(long dsId, long caachId);
     int appointmentDriving(long id, long studentsId);
+    List<AppointmentSt> futureAppointment(long dsId, long stId);
 }
