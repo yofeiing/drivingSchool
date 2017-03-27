@@ -2,6 +2,7 @@ package com.yoflying.drivingschool.coachStudents.facade;
 
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
+import com.yoflying.drivingschool.domain.jpa.AppointmentStLog;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
 
@@ -18,4 +19,5 @@ public interface CoachStFacadeService {
     StudentModel getStudentModel(long dsId, long caachId);
     int appointmentDriving(long id, long studentsId);
     List<AppointmentSt> futureAppointment(long dsId, long stId);
+    List<AppointmentStLog> historyAppointment(long dsId, long stId);
 }

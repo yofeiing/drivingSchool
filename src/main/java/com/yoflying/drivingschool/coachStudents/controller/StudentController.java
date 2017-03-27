@@ -90,4 +90,15 @@ public class StudentController extends BaseCsController {
         return  new JsonResult<>(ErrorDef.SUCCESS, "返回数据", coachStFacade.futureAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId()));
     }
 
+    /**
+     * 学员未来约车信息
+     * @return
+     */
+    @RequestMapping(value = "/historyAppointment", method = RequestMethod.GET)
+    @RequiresRoles(RoleSign.STUDENT)
+    @ResponseBody
+    public JsonResult historyAppointment() {
+        return  new JsonResult<>(ErrorDef.SUCCESS, "返回数据", coachStFacade.historyAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId()));
+    }
+
 }

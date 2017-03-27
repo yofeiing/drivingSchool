@@ -5,8 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
+import com.yoflying.drivingschool.domain.jpa.AppointmentStLog;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.domain.model.DrivingSchool;
+import com.yoflying.drivingschool.domain.service.AppointmentStLogService;
 import com.yoflying.drivingschool.domain.service.AppointmentStService;
 import com.yoflying.drivingschool.domain.service.CoachStudentService;
 import com.yoflying.drivingschool.domain.service.DrivingSchoolService;
@@ -32,6 +34,9 @@ public class CoachStFacade implements CoachStFacadeService{
 
     @Autowired
     CoachStudentService coachStudentService;
+
+    @Autowired
+    AppointmentStLogService appointmentStLogService;
 
     @Transactional
     public List<AppointmentSt> getAppointmentInfo(long dsId, long coachId, int testCoures) {
@@ -104,5 +109,10 @@ public class CoachStFacade implements CoachStFacadeService{
     @Override
     public List<AppointmentSt> futureAppointment(long dsId, long stId) {
         return appointmentStService.findAppointmentStbyDsIDandStIdAll(dsId, stId);
+    }
+
+    @Override
+    public List<AppointmentStLog> historyAppointment(long dsId, long stId) {
+        return appointmentStLogService.findAppointmentStLogbyDsIDandStId(dsId, stId);
     }
 }
