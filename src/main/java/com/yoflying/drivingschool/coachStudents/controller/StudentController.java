@@ -70,10 +70,10 @@ public class StudentController extends BaseCsController {
     @RequiresRoles(RoleSign.STUDENT)
     @ResponseBody
     public JsonResult postAppointment(@RequestBody AppointmentModel appointmentModel) {
-        if (appointmentModel.getId() == null || appointmentModel.getStudentsId() == null) {
+        if (appointmentModel.getId() == null || appointmentModel.getStudentsId() != getCoachStudentUser().getId()) {
             return new JsonResult("参数错误", ErrorDef.FAILURE);
         }
-        int ret = coachStFacade.appointmentDriving(appointmentModel.getId(), appointmentModel.getStudentsId());
+        int ret = coachStFacade.appointmentDriving(appointmentModel.getId(), getCoachStudentUser().getId());
 
         return ret > 0 ? new JsonResult<List<AppointmentSt>>("预约成功", ErrorDef.SUCCESS)
                 : new JsonResult("预约失败", ErrorDef.FAILURE);
