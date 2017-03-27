@@ -1,5 +1,6 @@
 package com.yoflying.drivingschool.coachStudents.facade;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
@@ -87,11 +88,16 @@ public class CoachStFacade implements CoachStFacadeService{
         AppointmentSt st =  appointmentStService.appointmentStbyStatusById(id);
         if (st != null) {
             JSONObject appointmentDate = (JSONObject) JSON.parse(st.getAppointmentDate());
-            List<Long> studentsIds = (List<Long>) JSON.parse(st.getStudentsIds());
+
             int size = appointmentDate.getInteger("size");
-            if (studentsIds == null) {
+            List<Long> studentsIds;
+
+            if (!StringUtils.isEmpty(st.getStudentsIds())) {
+                studentsIds = (List<Long>) JSON.parse(st.getStudentsIds());
+            } else {
                 studentsIds = new ArrayList<>();
             }
+
             if (studentsIds.size() >= size) {
                 return ErrorDef.FAILURE;
             } else {

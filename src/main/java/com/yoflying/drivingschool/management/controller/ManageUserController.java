@@ -336,7 +336,8 @@ public class ManageUserController extends BaseManageControllet {
         }
         final int[] ret = new int[1];
         entitys.forEach(appSt-> {
-             appSt.setDsId(getManageUser().getDsId());
+            appSt.setDsId(getManageUser().getDsId());
+            appSt.setStudentsIds(null);
              ret[0] = manageServiceFacade.saveAppointmentSt(appSt);
         });
 
