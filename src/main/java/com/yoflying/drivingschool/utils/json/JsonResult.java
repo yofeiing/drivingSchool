@@ -1,5 +1,7 @@
 package com.yoflying.drivingschool.utils.json;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 /**
@@ -11,22 +13,27 @@ public class JsonResult <T> implements Serializable {
     /**
      * 是否成功
      */
+    @JSONField(ordinal = 0)
     private int status;
     /**
      * 信息
      */
+    @JSONField(ordinal = 1)
     private String message;
     /**
      * 当前第几页
      */
+    @JSONField(ordinal = 2)
     private int pageNum;
     /**
      * 总公几页
      */
+    @JSONField(ordinal = 3)
     private long total;
     /**
      * 数据
      */
+    @JSONField(ordinal = 4)
     private T data;
 
     public T getData() {
