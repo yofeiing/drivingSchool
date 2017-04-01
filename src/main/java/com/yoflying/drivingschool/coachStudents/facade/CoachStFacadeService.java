@@ -21,4 +21,5 @@ public interface CoachStFacadeService {
     int appointmentDriving(long id, long studentsId);
     List<AppointmentSt> futureAppointment(long dsId, long stId);
     JsonResult historyAppointment(long dsId, long stId, int pageNum);
+    JsonResult getStudentCoach(Integer id);
 }

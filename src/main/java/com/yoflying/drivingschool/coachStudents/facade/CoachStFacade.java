@@ -129,4 +129,15 @@ public class CoachStFacade implements CoachStFacadeService{
         long total  = ((Page) datas).getTotal();
         return new JsonResult(ErrorDef.SUCCESS, "查询成功", pageNum, total, datas);
     }
+
+    @Override
+    public JsonResult getStudentCoach(Integer id) {
+        CoachStudentUser user = null;
+        if (id != null) {
+            user = coachStudentService.findOneByCoachStID(id);
+            user.setIdentityCard("");
+            user.setPassword("");
+        }
+        return new JsonResult(ErrorDef.SUCCESS, "查询成功", user);
+    }
 }

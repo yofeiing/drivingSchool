@@ -104,4 +104,15 @@ public class StudentController extends BaseCsController {
         return  coachStFacade.historyAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId(), pageNum);
     }
 
+    /**
+     * 获取教练信息
+     * @return
+     */
+    @RequestMapping(value = "/getStudentCoach", method = RequestMethod.GET)
+    @RequiresRoles(RoleSign.STUDENT)
+    @ResponseBody
+    public JsonResult getStudentCoach() {
+        return  coachStFacade.getStudentCoach(getCoachStudentUser().getCoachId());
+    }
+
 }
