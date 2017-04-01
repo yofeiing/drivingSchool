@@ -3,17 +3,22 @@ package com.yoflying.drivingschool.coachStudents.facade;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.yoflying.drivingschool.coachStudents.model.StudentModel;
+import com.yoflying.drivingschool.constdef.Const;
 import com.yoflying.drivingschool.constdef.ErrorDef;
 import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.jpa.AppointmentStLog;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.domain.model.DrivingSchool;
+import com.yoflying.drivingschool.domain.model.DsLeave;
 import com.yoflying.drivingschool.domain.service.AppointmentStLogService;
 import com.yoflying.drivingschool.domain.service.AppointmentStService;
 import com.yoflying.drivingschool.domain.service.CoachStudentService;
 import com.yoflying.drivingschool.domain.service.DrivingSchoolService;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
+import com.yoflying.drivingschool.utils.json.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -118,7 +123,10 @@ public class CoachStFacade implements CoachStFacadeService{
     }
 
     @Override
-    public List<AppointmentStLog> historyAppointment(long dsId, long stId) {
-        return appointmentStLogService.findAppointmentStLogbyDsIDandStId(dsId, stId);
+    public JsonResult historyAppointment(long dsId, long stId, int pageNum) {
+        PageHelper.startPage(pageNum, Const.DEF_PAGE_SIZA);
+        List<AppointmentStLog> datas = appointmentStLogService.findAppointmentStLogbyDsIDandStId(dsId, stId);
+        long total  = ((Page) datas).getTotal();
+        return new JsonResult(ErrorDef.SUCCESS, "查询成功", pageNum, total, datas);
     }
 }

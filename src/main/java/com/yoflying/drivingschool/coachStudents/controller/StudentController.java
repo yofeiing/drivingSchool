@@ -97,8 +97,11 @@ public class StudentController extends BaseCsController {
     @RequestMapping(value = "/historyAppointment", method = RequestMethod.GET)
     @RequiresRoles(RoleSign.STUDENT)
     @ResponseBody
-    public JsonResult historyAppointment() {
-        return  new JsonResult<>(ErrorDef.SUCCESS, "返回数据", coachStFacade.historyAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId()));
+    public JsonResult historyAppointment(Integer pageNum) {
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        return  coachStFacade.historyAppointment(getCoachStudentUser().getDsId(), getCoachStudentUser().getId(), pageNum);
     }
 
 }

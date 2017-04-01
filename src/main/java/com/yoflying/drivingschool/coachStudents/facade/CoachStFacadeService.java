@@ -5,6 +5,7 @@ import com.yoflying.drivingschool.domain.jpa.AppointmentSt;
 import com.yoflying.drivingschool.domain.jpa.AppointmentStLog;
 import com.yoflying.drivingschool.domain.model.CoachStudentUser;
 import com.yoflying.drivingschool.entity.DSInfoEntity;
+import com.yoflying.drivingschool.utils.json.JsonResult;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface CoachStFacadeService {
     StudentModel getStudentModel(long dsId, long caachId);
     int appointmentDriving(long id, long studentsId);
     List<AppointmentSt> futureAppointment(long dsId, long stId);
-    List<AppointmentStLog> historyAppointment(long dsId, long stId);
+    JsonResult historyAppointment(long dsId, long stId, int pageNum);
 }
